@@ -342,7 +342,7 @@ class GDSBandAllocator:
 def compute_score(program, course_list):
 
     # get dictionary
-    label_dictionary = pd.read_csv("data/labelled_units_words.csv")
+    label_dictionary = pd.read_csv("labelled_units_words.csv")
 
     # make dataframe
     course_list = course_list.split(',')
