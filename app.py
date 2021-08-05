@@ -12,7 +12,7 @@ st.set_page_config(
 
 @st.cache(allow_output_mutation=True)
 def load_data():
-    pgm_data = pd.read_csv("data\masters_data_programs_india_usa.csv")
+    pgm_data = pd.read_csv("masters_data_programs_india_usa.csv")
     pgm_data = pgm_data[[
         "id",
         "uni_name",
@@ -31,7 +31,7 @@ def load_data():
         "Science about Data Science",
         "gds_score",
     ]]
-    gds_dictionary = pd.read_csv("data/labelled_units_words.csv")
+    gds_dictionary = pd.read_csv("labelled_units_words.csv")
 
     return pgm_data, gds_dictionary
 
