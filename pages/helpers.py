@@ -414,6 +414,7 @@ class ProgramRecommender:
 
     def __init__(self, df):
 
+        df = df.reset_index(drop=True)
         pgm_id = df['uni_name'] + " - " + df['pgm_name']
         descr = df['descr']
         text = df['descr'].apply(lambda x: TextPreprocessor(x).preprocess_text() if x!='Not inferred' else x)

@@ -7,7 +7,7 @@ def show():
     with st.form(key="basic_filters"):
         st.subheader("Basic Filters")
         cols1 = st.beta_columns(2)
-        countries = cols1[0].multiselect("Select country", ["India", "USA"], help="Can select more than one country")
+        countries = cols1[0].multiselect("Select country", ["USA", "India"], help="Can select more than one country")
         types = cols1[1].multiselect("Select type of university based on funding",
             ["Private", "Public"], help="Can select more than one funding status")
         cols2 = st.beta_columns(2)
@@ -59,17 +59,20 @@ def show():
             st.session_state.weighted = rank_programs(st.session_state.filtered, priority)
             st.session_state.most_suitable = st.session_state.weighted.id[0]
             st.write(st.session_state.most_suitable)
-    
-    with st.form(key="get_similar"):
-        st.subheader("Get similar programs")
-        get_sim = st.form_submit_button("Get similar programs")
 
-        if get_sim:
-            st.text("Top 5 programs in tabular format")
-            pr = ProgramRecommender(st.session_state.df[
-                (st.session_state.df.country.isin(st.session_state.countries))
-            ])
-            st.write(pr.get_most_similar(st.session_state.most_suitable))
+    try:
+        with st.form(key="get_similar"):
+            st.subheader("Get similar programs")
+            get_sim = st.form_submit_button("Get similar programs")
+
+            if get_sim:
+                st.text("Top 5 programs in tabular format")
+                pr = ProgramRecommender(st.session_state.df[
+                    (st.session_state.df.country.isin(st.session_state.countries))
+                ])
+                st.write(pr.get_most_similar(st.session_state.most_suitable))
+    except:
+        st.write("Unexpected error occured. Please try another input for demo.")
     
     '''
     st.sidebar.subheader("Links")
